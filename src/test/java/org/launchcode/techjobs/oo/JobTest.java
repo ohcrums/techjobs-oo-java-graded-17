@@ -3,6 +3,7 @@ package org.launchcode.techjobs.oo;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Test;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 
 
@@ -46,14 +47,27 @@ public class JobTest {
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
+        Job JobA = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        String firstChar = String.valueOf(JobA.toString().charAt(0));
+        String lastChar = String.valueOf(JobA.toString().charAt(JobA.toString().length()-1));
+        assertEquals(firstChar, lineSeparator());
+        assertEquals(lastChar, lineSeparator());
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
+        Job JobA = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertEquals(String.format("%nID: %o%nName: %s%nEmployer: %s%nLocation: %s%nPosition Type: %s%nCore Competency: %s%n", JobA.getId(), "Product tester", "ACME", "Desert", "Quality control", "Persistence"), JobA.toString());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
+        Job JobA = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType(""), new CoreCompetency("Persistence"));
+        String notAvailable = "Data not available";
+
+        assertEquals(String.format("%nID: %o%nName: %s%nEmployer: %s%nLocation: %s%nPosition Type: %s%nCore Competency: %s%n", JobA.getId(), "Product tester", notAvailable, "Desert", notAvailable, "Persistence"), JobA.toString());
     }
 
 }

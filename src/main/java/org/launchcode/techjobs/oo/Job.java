@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static java.lang.System.lineSeparator;
+
 public class Job {
 
     private int id;
@@ -30,7 +32,22 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-// DONe: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+
+    @Override
+    public String toString() {
+        return String.format("%sID: %s%nName: %s%nEmployer: %s%nLocation: %s%nPosition Type: %s%nCore Competency: %s%s", lineSeparator(), checkFieldEmpty(id), checkFieldEmpty(name), checkFieldEmpty(employer), checkFieldEmpty(location), checkFieldEmpty(positionType), checkFieldEmpty(coreCompetency), lineSeparator());
+    }
+
+    public String checkFieldEmpty(Object field) {
+        String stringField = field.toString();
+            if (stringField.isEmpty()) {
+                return "Data not available";
+            } else {
+                return stringField;
+            }
+    }
+
+    // DONe: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
     @Override
