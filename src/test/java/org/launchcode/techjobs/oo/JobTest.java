@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 
 public class JobTest {
-    //TODO: Create your unit tests here
+    //DONE: Create your unit tests here
 
     @Test
     public void testSettingJobId() {
